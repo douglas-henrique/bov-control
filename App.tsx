@@ -8,7 +8,19 @@
 import React from 'react';
 import type { PropsWithChildren } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import AppStack from './src/navigation';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import AppStack from '@/navigation';
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      // staleTime: 5 * 60 * 1000, // 5 minutos
+      // cacheTime: 10 * 60 * 1000, // 10 minutos
+      // refetchOnWindowFocus: false,
+    },
+  },
+});
+
 import {
   SafeAreaView,
   ScrollView,
@@ -32,14 +44,10 @@ type SectionProps = PropsWithChildren<{
 }>;
 
 function App(): React.JSX.Element {
-  // const isDarkMode = useColorScheme() === 'dark';
-
-  // const backgroundStyle = {
-  //   backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  // };
-
   return (
-    <AppStack  />
+    <QueryClientProvider client={queryClient}>
+      <AppStack />
+    </QueryClientProvider>
     // <SafeAreaView style={backgroundStyle}>
     //   <StatusBar
     //     barStyle={isDarkMode ? 'light-content' : 'dark-content'}

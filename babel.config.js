@@ -8,6 +8,16 @@ module.exports = {
       "whitelist": null,
       "safe": false,
       "allowUndefined": true
-    }]
+    }],
+    [
+      'module-resolver',
+      {
+        root: ['./'],
+        alias: {
+          '@': './src',
+        },
+        extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
+      },
+    ],
   ]
 };
