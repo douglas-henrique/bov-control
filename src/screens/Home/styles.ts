@@ -5,11 +5,12 @@ export const SafeAreaView = styled.SafeAreaView`
 `
 
 export const Header = styled.View`
-    border:1px solid #000;
     display: flex;
     flex-direction: row;
     height: 100px;
     align-items: center;
-    padding: 10px;
+    padding: 15px;
 `
+
+
 

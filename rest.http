@@ -1,2 +1,2 @@
-GET http://challenge-front-end.bovcontrol.com/v1/checkLista
+GET http://challenge-front-end.bovcontrol.com/v1/checkList
 Content-Type: application/json
