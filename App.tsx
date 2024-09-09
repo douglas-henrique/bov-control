@@ -1,15 +1,10 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
 import React from 'react';
 import type { PropsWithChildren } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import AppStack from '@/navigation';
+import { RealmProvider } from '@realm/react';
+import { Checklist, Farmer, From, To, Location } from '@/models'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -21,23 +16,6 @@ const queryClient = new QueryClient({
   },
 });
 
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
-
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -45,9 +23,11 @@ type SectionProps = PropsWithChildren<{
 
 function App(): React.JSX.Element {
   return (
-    <QueryClientProvider client={queryClient}>
-      <AppStack />
-    </QueryClientProvider>
+    <RealmProvider schema={[Checklist, Farmer, From, To, Location]}>
+      <QueryClientProvider client={queryClient}>
+        <AppStack />
+      </QueryClientProvider>
+    </RealmProvider>
     // <SafeAreaView style={backgroundStyle}>
     //   <StatusBar
     //     barStyle={isDarkMode ? 'light-content' : 'dark-content'}
