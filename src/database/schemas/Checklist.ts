@@ -3,13 +3,15 @@ import Farmer from "./Farmer";
 import From from "./From";
 import To from "./To";
 import Location from './Location';
+
+
 class Checklist extends Realm.Object {
-    _id!: Realm.BSON.ObjectId;
+    _id!: string;
     type!: string;
     amount_of_milk_produced!: string;
     farmer!: Farmer
-    from!: From
-    to!: To;
+    from!: string
+    to!: string
     number_of_cows_head!: string
     had_supervision!: boolean
     location!: Location
@@ -20,14 +22,14 @@ class Checklist extends Realm.Object {
         name: 'Checklist',
         primaryKey: '_id',
         properties: {
-            _id: 'objectId',
+            _id: 'string',
             type: 'string',
             amount_of_milk_produced: 'string',
             farmer: 'Farmer',
-            from: 'From',
-            to: 'To',
+            from: 'string',
+            to: 'string',
             number_of_cows_head: 'string',
-            had_supervision: { type: 'bool', default: false },
+            had_supervision: 'bool',
             location: 'Location',
             created_at: 'date',
             updated_at: 'date'

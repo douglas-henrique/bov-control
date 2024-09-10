@@ -3,9 +3,14 @@ import type { PropsWithChildren } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import AppStack from '@/navigation';
+import Checklist from '@/database/schemas/Checklist';
+import { Farmer, Location } from '@/database/schemas';
+// import { Checklist, Farmer, From, To, Location } from '@/database/schemas'
+// import { createRealmContext, Realm } from '@realm/react';
+// Realm.copyBundledRealmFiles();
+// const realmContext = createRealmContext({ schema: [Farmer, Location, Checklist], path: 'bundle.realm', schemaVersion: 2 });
+// const { RealmProvider } = realmContext;
 import { RealmProvider } from '@realm/react';
-import { Checklist, Farmer, From, To, Location } from '@/models'
-
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -23,7 +28,7 @@ type SectionProps = PropsWithChildren<{
 
 function App(): React.JSX.Element {
   return (
-    <RealmProvider schema={[Checklist, Farmer, From, To, Location]}>
+    <RealmProvider schema={[Farmer, Location, Checklist]} path='bundle.realm' schemaVersion={6} >
       <QueryClientProvider client={queryClient}>
         <AppStack />
       </QueryClientProvider>
